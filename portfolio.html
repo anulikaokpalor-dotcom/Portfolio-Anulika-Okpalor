@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anulika Okpalor — Technical Writing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1f3d;
+    --navy-mid: #1a3260;
+    --blue: #1f4e8c;
+    --blue-light: #2d6bbf;
+    --teal: #1e8a9a;
+    --teal-light: #3ab4c6;
+    --gold: #c9933a;
+    --gold-light: #e8b456;
+    --cream: #f5f1eb;
+    --cream-dark: #ede8df;
+    --white: #ffffff;
+    --text-dark: #0f1f3d;
+    --text-mid: #3d5275;
+    --text-light: #6b7fa3;
+    --border: #d8e0ed;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15,31,61,0.97); backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw; height: 64px; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--cream); letter-spacing: 0.02em; }
+  .nav-logo span { color: var(--gold-light); }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; background: var(--navy);
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 100px 5vw 60px; gap: 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 700px; height: 700px; background: radial-gradient(circle, rgba(30,138,154,0.18) 0%, transparent 65%); pointer-events: none; }
+  .hero::after  { content: ''; position: absolute; bottom: -10%; left: 20%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(201,147,58,0.1) 0%, transparent 65%); pointer-events: none; }
+  .hero-text { position: relative; z-index: 2; }
+  .hero-eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal-light); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 2px; background: var(--teal-light); }
+  .hero-name { font-family: 'DM Serif Display', serif; font-size: clamp(3rem,5vw,5rem); line-height: 1.05; color: var(--white); margin-bottom: 0.5rem; }
+  .hero-name em { font-style: italic; color: var(--gold-light); }
+  .hero-title { font-size: clamp(1rem,1.5vw,1.25rem); font-weight: 300; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; margin-bottom: 2rem; }
+  .hero-desc { font-size: 1.05rem; line-height: 1.75; color: rgba(255,255,255,0.72); max-width: 520px; margin-bottom: 2.5rem; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--gold); color: var(--navy); text-decoration: none; padding: 0.9rem 2rem; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.04em; border-radius: 4px; transition: background 0.2s, transform 0.2s; }
+  .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .hero-cta svg { width: 16px; height: 16px; }
+  .hero-stats { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .stat-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.75rem 1.5rem; transition: background 0.2s, border-color 0.2s; }
+  .stat-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(58,180,198,0.35); }
+  .stat-card.featured { grid-column: 1/-1; background: rgba(30,138,154,0.12); border-color: rgba(30,138,154,0.3); }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--gold-light); line-height: 1; margin-bottom: 0.4rem; }
+  .stat-label { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .stat-desc { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.5; margin-top: 0.75rem; }
+
+  /* SECTIONS */
+  section { padding: 80px 5vw; }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); white-space: nowrap; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem,3vw,2.5rem); color: var(--navy); line-height: 1.15; }
+  .section-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--border), transparent); }
+
+  /* ABOUT */
+  #about { background: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; }
+  .about-text p { font-size: 1.05rem; line-height: 1.85; color: var(--text-mid); margin-bottom: 1.25rem; }
+  .about-text p strong { color: var(--navy); font-weight: 600; }
+  .about-skills { margin-top: 2rem; }
+  .skills-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); margin-bottom: 1rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .skill-tag { background: var(--cream); border: 1px solid var(--border); color: var(--navy-mid); font-size: 0.82rem; font-weight: 500; padding: 0.45rem 1rem; border-radius: 100px; transition: all 0.2s; }
+  .skill-tag:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+  .about-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+  .info-block { background: var(--cream); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+  .info-block-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+  .info-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.85rem; font-size: 0.92rem; color: var(--text-mid); line-height: 1.5; }
+  .info-item:last-child { margin-bottom: 0; }
+  .info-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); margin-top: 0.45rem; flex-shrink: 0; }
+
+  /* WORK */
+  #work { background: var(--cream); }
+  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .work-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; display: flex; flex-direction: column; }
+  .work-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(15,31,61,0.12); border-color: var(--teal-light); }
+  .work-card.full  { grid-column: 1/-1; }
+  .card-top { height: 6px; background: linear-gradient(to right, var(--teal), var(--blue-light)); }
+  .card-top.gold  { background: linear-gradient(to right, var(--gold), var(--gold-light)); }
+  .card-top.navy  { background: linear-gradient(to right, var(--navy-mid), var(--blue)); }
+  .card-top.video { background: linear-gradient(to right, #7c3aed, #a855f7); }
+  .card-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; }
+  .card-category { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem; }
+  .card-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; line-height: 1.25; color: var(--navy); margin-bottom: 0.75rem; }
+  .card-desc { font-size: 0.92rem; line-height: 1.65; color: var(--text-light); margin-bottom: 1.25rem; flex: 1; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+  .tag { background: var(--cream); border: 1px solid var(--border); font-size: 0.72rem; font-weight: 500; color: var(--navy-mid); padding: 0.3rem 0.75rem; border-radius: 100px; }
+  .card-meta { display: flex; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: auto; }
+  .card-view-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 600; color: var(--teal); text-decoration: none; transition: gap 0.2s, color 0.2s; }
+  .card-view-link:hover { gap: 0.65rem; color: var(--navy); }
+  .card-view-link svg { width: 13px; height: 13px; }
+
+  /* VIDEO CARD */
+  .card-link { text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+  .video-thumb { position: relative; background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 50%, #7c3aed 100%); height: 160px; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+  .video-thumb::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 60% 40%, rgba(168,85,247,0.3), transparent 60%); }
+  .video-play-btn { width: 52px; height: 52px; background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; transition: background 0.2s, transform 0.2s; }
+  .work-card:hover .video-play-btn { background: rgba(255,255,255,0.25); transform: scale(1.1); }
+  .video-play-btn svg { width: 20px; height: 20px; fill: white; margin-left: 3px; }
+  .video-label { position: absolute; bottom: 10px; right: 12px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); background: rgba(0,0,0,0.3); padding: 0.25rem 0.6rem; border-radius: 4px; }
+
+  /* IORAD */
+  .iorad-embed { width: 100%; height: 420px; background: var(--cream); border-bottom: 1px solid var(--border); overflow: hidden; }
+  .iorad-embed iframe { width: 100%; height: 100%; display: block; border: none; }
+
+  /* EXPERTISE */
+  #expertise { background: var(--navy); }
+  #expertise .section-title { color: var(--white); }
+  #expertise .section-line { background: linear-gradient(to right, rgba(255,255,255,0.15), transparent); }
+  .expertise-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; }
+  .expertise-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 1.75rem 1.5rem; transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+  .expertise-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(58,180,198,0.4); transform: translateY(-4px); }
+  .expertise-icon { width: 44px; height: 44px; background: rgba(30,138,154,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1.3rem; }
+  .expertise-name { font-weight: 600; font-size: 1rem; color: var(--white); margin-bottom: 0.6rem; }
+  .expertise-desc { font-size: 0.87rem; line-height: 1.6; color: rgba(255,255,255,0.5); }
+
+  /* CONTACT */
+  #contact { background: var(--cream-dark); }
+  .contact-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+  .contact-inner .section-header { justify-content: center; }
+  .contact-inner .section-line { display: none; }
+  .contact-text { font-size: 1.05rem; line-height: 1.75; color: var(--text-mid); margin-bottom: 2.5rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
+  .contact-btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.75rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.2s; letter-spacing: 0.02em; }
+  .contact-btn.primary { background: var(--navy); color: var(--white); }
+  .contact-btn.primary:hover { background: var(--navy-mid); transform: translateY(-2px); }
+  .contact-btn.secondary { background: transparent; border: 2px solid var(--navy); color: var(--navy); }
+  .contact-btn.secondary:hover { background: var(--navy); color: var(--white); }
+
+  /* FOOTER */
+  footer { background: var(--navy); padding: 2rem 5vw; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.07); }
+  .footer-name { font-family: 'DM Serif Display', serif; font-size: 1rem; color: rgba(255,255,255,0.6); }
+  .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+  .hero-eyebrow { animation: fadeUp 0.6s 0.10s both; }
+  .hero-name    { animation: fadeUp 0.6s 0.25s both; }
+  .hero-title   { animation: fadeUp 0.6s 0.35s both; }
+  .hero-desc    { animation: fadeUp 0.6s 0.45s both; }
+  .hero-cta     { animation: fadeUp 0.6s 0.55s both; }
+  .hero-stats   { animation: fadeUp 0.7s 0.40s both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .work-grid { grid-template-columns: 1fr 1fr; }
+    .expertise-grid { grid-template-columns: 1fr 1fr; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-stats { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+  @media (max-width: 640px) {
+    .work-grid { grid-template-columns: 1fr; }
+    .work-card.full { grid-column: span 1; }
+    .expertise-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Anulika <span>Okpalor</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#expertise">Expertise</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Technical Writing Portfolio</div>
+    <h1 class="hero-name">Anulika<br><em>Okpalor</em></h1>
+    <p class="hero-title">Technical Writer &amp; Instructional Content Designer</p>
+    <p class="hero-desc">
+      Transforming complex software processes into clear, user-centered documentation —
+      from step-by-step help articles and eLearning courses to interactive tutorials.
+    </p>
+    <a href="#work" class="hero-cta">
+      View Work Samples
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card featured">
+      <div class="stat-num">6</div>
+      <div class="stat-label">Work Samples</div>
+      <div class="stat-desc">Spanning help center articles, eLearning courses, interactive tutorials, and video demos</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Platforms</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-label">About</span>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="about-skills">
+        <p class="skills-label">Core Skills</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Help Center Articles</span>
+          <span class="skill-tag">eLearning Authoring</span>
+          <span class="skill-tag">Step-by-Step Tutorials</span>
+          <span class="skill-tag">Process Documentation</span>
+          <span class="skill-tag">SaaS Platform Docs</span>
+          <span class="skill-tag">Instructional Design</span>
+          <span class="skill-tag">Knowledge Base Management</span>
+          <span class="skill-tag">Screenshot Annotation</span>
+          <span class="skill-tag">Zendesk</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-sidebar">
+      <div class="info-block">
+        <p class="info-block-title">Writing Specialties</p>
+        <div class="info-item"><div class="info-dot"></div>User-facing software documentation</div>
+        <div class="info-item"><div class="info-dot"></div>eLearning course content &amp; knowledge checks</div>
+
+        <div class="info-item"><div class="info-dot"></div>Procedural step-by-step tutorials</div>
+      </div>
+      <div class="info-block">
+        <p class="info-block-title">Contact</p>
+        <div class="info-item"><div class="info-dot"></div>Anulikaokpalor@gmail.com</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-header">
+    <span class="section-label">Portfolio</span>
+    <h2 class="section-title">Work Samples</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="work-grid">
+
+    <!-- 1. Integrate Microsoft Outlook with CommunitySuite -->
+    <div class="work-card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <p class="card-category">Help Center Article</p>
+        <h3 class="card-title">Integrate Microsoft Outlook with CommunitySuite</h3>
+        <p class="card-desc">A published help center article walking users through integrating Microsoft Outlook with the CommunitySuite platform, enabling seamless email connectivity directly within the Foundant ecosystem.</p>
+        <div class="card-tags">
+          <span class="tag">Help Center</span>
+          <span class="tag">Microsoft Outlook</span>
+          <span class="tag">Integration</span>
+          <span class="tag">CommunitySuite</span>
+        </div>
+        <div class="card-meta">
+          <a href="https://support.foundant.com/hc/en-us/articles/28571204576791-Integrate-Microsoft-Outlook-with-CommunitySuite" target="_blank" class="card-view-link">
+            View Published Article <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Fund Manager App -->
+    <div class="work-card">
+      <div class="card-top gold"></div>
+      <div class="card-body">
+        <p class="card-category">Help Center Article</p>
+        <h3 class="card-title">Get Started with the Foundant Fund Manager App</h3>
+        <p class="card-desc">A published help center article covering the Foundant Fund Manager mobile app for iOS and Android, including setup and branding, fund advisor permissions, downloading and signing in, creating grant requests, making donations, and accessing tax receipts.</p>
+        <div class="card-tags">
+          <span class="tag">Help Center</span>
+          <span class="tag">Mobile App</span>
+          <span class="tag">CommunitySuite</span>
+          <span class="tag">Fund Management</span>
+        </div>
+        <div class="card-meta">
+          <a href="https://support.foundant.com/hc/en-us/articles/42699852135575-Get-Started-with-the-Foundant-Fund-Manager-App" target="_blank" class="card-view-link">
+            View Published Article <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Categorize Grantees Using Tax Class -->
+    <div class="work-card">
+      <div class="card-top navy"></div>
+      <div class="card-body">
+        <p class="card-category">Help Center Article</p>
+        <h3 class="card-title">Categorize Grantees Using Tax Class</h3>
+        <p class="card-desc">A published help center article explaining how to use the Tax Class field in CommunitySuite to categorize grantee profiles by tax classification, including creating tax classes, adding them to individual or bulk profiles, and surfacing them on the 990 report.</p>
+        <div class="card-tags">
+          <span class="tag">Help Center</span>
+          <span class="tag">CommunitySuite</span>
+          <span class="tag">Grantee Management</span>
+          <span class="tag">990 Report</span>
+        </div>
+        <div class="card-meta">
+          <a href="https://support.foundant.com/hc/en-us/articles/36790511995799-Categorize-Grantees-Using-Tax-Class" target="_blank" class="card-view-link">
+            View Published Article <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Campaigns eLearning -->
+    <div class="work-card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <p class="card-category">eLearning Course</p>
+        <h3 class="card-title">CommunitySuite Fundamentals: Campaigns</h3>
+        <p class="card-desc">A five-section eLearning course covering CommunitySuite's full campaigns functionality: marketing, event, fundraising, and historical campaigns. Includes learning objectives, concept flip cards, embedded videos, a knowledge check, and interactive exercises. Authored for the Foundant + SmartSimple Cloud platform.</p>
+        <div class="card-tags">
+          <span class="tag">eLearning</span>
+          <span class="tag">Instructional Design</span>
+          <span class="tag">Knowledge Check</span>
+          <span class="tag">CommunitySuite</span>
+          <span class="tag" style="background:#fff0f0; border-color:#f5c0c0; color:#c0392b; font-weight:600;">📄 PDF</span>
+        </div>
+        <div class="card-meta">
+          <a href="https://drive.google.com/file/d/1BdZYzZEpdQ9Zt-Wr4Fx1Yr0XHTyotVCf/view?usp=sharing" target="_blank" class="card-view-link">
+            View Course <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Giving Hub Video Demo -->
+    <div class="work-card">
+      <div class="card-top video"></div>
+      <a href="https://drive.google.com/file/d/13PyiYuSL9-WPL25UTt_y05EEESP6tL3c/view?usp=sharing" target="_blank" class="card-link">
+        <div class="video-thumb">
+          <div class="video-play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="video-label">▶ Watch Demo</span>
+        </div>
+      </a>
+      <div class="card-body">
+        <p class="card-category">Video Demo</p>
+        <h3 class="card-title">Giving Hub Overview</h3>
+        <p class="card-desc">A video walkthrough demonstrating the capabilities of Giving Hub, Foundant's online donation platform, showcasing the donor-facing interface and key features for nonprofit fundraising.</p>
+        <div class="card-tags">
+          <span class="tag">Video Demo</span>
+          <span class="tag">Foundant</span>
+          <span class="tag">Giving Hub</span>
+          <span class="tag">Donation Platform</span>
+          <span class="tag" style="background:#f0f4ff; border-color:#c0cef5; color:#2c4cb0; font-weight:600;">🎬 Video</span>
+        </div>
+        <div class="card-meta">
+          <a href="https://drive.google.com/file/d/13PyiYuSL9-WPL25UTt_y05EEESP6tL3c/view?usp=sharing" target="_blank" class="card-view-link">
+            Watch on Google Drive <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. iorad Interactive Tutorial -->
+    <div class="work-card full">
+      <div class="card-top gold"></div>
+      <div class="iorad-embed">
+        <iframe
+          src="https://www.iorad.com/player/2670131/CommunitySuite---Create-and-Sell-Public-Securities?src=iframe&oembed=1"
+          referrerpolicy="strict-origin-when-cross-origin"
+          frameborder="0"
+          webkitallowfullscreen="webkitallowfullscreen"
+          mozallowfullscreen="mozallowfullscreen"
+          allowfullscreen="allowfullscreen"
+          allow="camera; microphone; clipboard-write;"
+          sandbox="allow-scripts allow-forms allow-same-origin allow-presentation allow-downloads allow-modals allow-popups allow-popups-to-escape-sandbox allow-top-navigation allow-top-navigation-by-user-activation">
+        </iframe>
+      </div>
+      <div class="card-body">
+        <p class="card-category">Interactive Tutorial</p>
+        <h3 class="card-title">CommunitySuite: Create and Sell Public Securities</h3>
+        <p class="card-desc">An interactive step-by-step tutorial walking users through creating and selling public securities within CommunitySuite, built with iorad for a guided, hands-on learning experience directly in the browser.</p>
+        <div class="card-tags">
+          <span class="tag">Interactive Tutorial</span>
+          <span class="tag">iorad</span>
+          <span class="tag">CommunitySuite</span>
+          <span class="tag">Financial</span>
+        </div>
+        <div class="card-meta">
+          <a href="https://www.iorad.com/player/2670131/CommunitySuite---Create-and-Sell-Public-Securities" target="_blank" class="card-view-link">
+            Open Full Tutorial <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-header">
+    <span class="section-label" style="color:var(--teal-light)">Skills</span>
+    <h2 class="section-title">Areas of Expertise</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="expertise-grid">
+    <div class="expertise-card">
+      <div class="expertise-icon">📋</div>
+      <p class="expertise-name">Procedural Documentation</p>
+      <p class="expertise-desc">Clear, numbered step-by-step guides with contextual screenshots that anchor users in the interface at every stage.</p>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">🎓</div>
+      <p class="expertise-name">eLearning Content</p>
+      <p class="expertise-desc">Structured courses with learning objectives, concept flip cards, embedded media, and knowledge checks for software onboarding.</p>
+    </div>
+
+    <div class="expertise-card">
+      <div class="expertise-icon">🛠️</div>
+      <p class="expertise-name">SaaS Platform Docs</p>
+      <p class="expertise-desc">End-user documentation for complex SaaS platforms including financial tools, campaign management, and support systems.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-header">
+      <span class="section-label">Get in Touch</span>
+      <h2 class="section-title">Let's Work Together</h2>
+    </div>
+    <p class="contact-text">Interested in working together or want to learn more about my experience? I'd love to connect. Feel free to reach out via email.</p>
+    <div class="contact-links">
+      <a href="mailto:Anulikaokpalor@gmail.com" class="contact-btn primary">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="1" y="3" width="14" height="10" rx="2"/><path d="M1 5l7 5 7-5"/></svg>
+      
